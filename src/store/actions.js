@@ -1,7 +1,8 @@
 import GithubService from "@/services/github";
+import Swal from "sweetalert2";
 
 export default {
-  async search({ commit, rootState }, term = null) {
+  async search({ commit, dispatch, rootState }, term = null) {
     return new Promise((resolve, reject) => {
       commit("SET_BUSY");
 
@@ -23,6 +24,12 @@ export default {
           resolve(result);
         })
         .catch((error) => {
+          dispatch("clearResults");
+          Swal.fire({
+            title: "Error!",
+            text: error.message,
+            icon: "error",
+          });
           commit("SET_ERRORS", error);
           reject(error);
         })
@@ -30,6 +37,13 @@ export default {
           commit("SET_BUSY");
         });
     });
+  },
+
+  clearResults({ commit }) {
+    commit("SET_SEARCH_TERM", "");
+    commit("SET_SELECTED_PAGE", 1);
+    commit("SET_USERS", []);
+    commit("SET_TOTAL_COUT", 0);
   },
 
   changePage({ commit, dispatch }, page) {
