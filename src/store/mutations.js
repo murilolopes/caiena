@@ -5,7 +5,7 @@ export default {
   SET_SEARCH_TERM(state, payload) {
     state.term = payload;
   },
-  SET_TOTAL_COUT(state, payload) {
+  SET_TOTAL_COUNT(state, payload) {
     if (payload > state.per_page) state.total_count = payload - state.per_page;
     if (payload <= state.per_page) state.total_count = payload;
   },

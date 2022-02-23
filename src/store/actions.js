@@ -20,7 +20,7 @@ export default {
       GithubService.fetchUsers(payload)
         .then((result) => {
           commit("SET_USERS", result.items);
-          commit("SET_TOTAL_COUT", result.total_count);
+          commit("SET_TOTAL_COUNT", result.total_count);
           resolve(result);
         })
         .catch((error) => {
@@ -43,7 +43,7 @@ export default {
     commit("SET_SEARCH_TERM", "");
     commit("SET_SELECTED_PAGE", 1);
     commit("SET_USERS", []);
-    commit("SET_TOTAL_COUT", 0);
+    commit("SET_TOTAL_COUNT", 0);
   },
 
   changePage({ commit, dispatch }, page) {
