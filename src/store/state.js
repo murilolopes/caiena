@@ -2,7 +2,8 @@ export default {
   term: "",
   per_page: 20,
   users: [],
-  selectedPage: 1,
+  selected_page: 1,
   total_count: 0,
   errors: {},
+  busy: false,
 };

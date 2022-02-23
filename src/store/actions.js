@@ -1,12 +1,18 @@
 import GithubService from "@/services/github";
 
 export default {
-  async search({ commit, rootState }, term) {
+  async search({ commit, rootState }, term = null) {
     return new Promise((resolve, reject) => {
-      commit("SET_SEARCH_TERM", term);
+      commit("SET_BUSY");
+
+      if (term) {
+        commit("SET_SEARCH_TERM", term);
+        commit("SET_SELECTED_PAGE", 1);
+      }
+
       const payload = {
-        q: term,
-        page: rootState.selectedPage,
+        q: rootState.term,
+        page: rootState.selected_page,
         per_page: rootState.per_page,
       };
 
@@ -19,7 +25,15 @@ export default {
         .catch((error) => {
           commit("SET_ERRORS", error);
           reject(error);
+        })
+        .finally(() => {
+          commit("SET_BUSY");
         });
     });
+  },
+
+  changePage({ commit, dispatch }, page) {
+    commit("SET_SELECTED_PAGE", page);
+    dispatch("search");
   },
 };

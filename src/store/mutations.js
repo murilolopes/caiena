@@ -6,9 +6,15 @@ export default {
     state.term = payload;
   },
   SET_TOTAL_COUT(state, payload) {
-    state.total_count = payload;
+    state.total_count = payload - state.per_page;
   },
   SET_ERRORS(state, payload) {
     state.errors = payload;
+  },
+  SET_SELECTED_PAGE(state, payload) {
+    state.selected_page = payload;
+  },
+  SET_BUSY(state) {
+    state.busy = !state.busy;
   },
 };
