@@ -1,40 +1,61 @@
+import Vue from "vue";
 import Vuex from "vuex";
-import { createLocalVue } from "@vue/test-utils";
-import GithubService from "@/services/github";
+import state from "@/store/state";
 import actions from "@/store/actions";
 import mutations from "@/store/mutations";
+import GithubService from "@/services/github";
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+Vue.use(Vuex);
 
 describe("Vuex actions", () => {
-  test("search should call search on GithubService commit SET_SEARCH_TERM, SET_USERS, SET_TOTAL_COUT mutations and return success", async () => {
-    GithubService.search = jest
+  test("search should call search on GithubService servise and commit SET_SEARCH_TERM, SET_USERS, SET_TOTAL_COUT mutations on success", async () => {
+    GithubService.fetchUsers = jest
       .fn()
-      .mockResolvedValue({ result: { items: [] } });
-    jest.spyOn(actions, "search");
+      .mockResolvedValueOnce({ items: [], total_count: 0 });
+
     jest.spyOn(mutations, "SET_SEARCH_TERM");
     jest.spyOn(mutations, "SET_USERS");
     jest.spyOn(mutations, "SET_TOTAL_COUT");
 
     let store = new Vuex.Store({
+      state,
       actions,
       mutations,
     });
 
     const response = await store.dispatch("search", "teste");
 
-    expect(GithubService.searchVideos).toHaveBeenCalledWith({
+    expect(mutations.SET_SEARCH_TERM).toHaveBeenCalledWith(state, "teste");
+    expect(GithubService.fetchUsers).toHaveBeenCalledWith({
       q: "teste",
       page: 1,
       per_page: 20,
     });
-    expect(mutations.SET_VIDEOS).toHaveBeenCalledWith(
+    expect(mutations.SET_USERS).toHaveBeenCalledWith(
       store.state,
-      response.result.items
+      response.items
     );
+    expect(mutations.SET_TOTAL_COUT).toHaveBeenCalledWith(
+      store.state,
+      response.total_count
+    );
+  });
 
-    // TODO try to understand why this test fails
-    // expect(actions.saveQuery).toHaveBeenCalledWith("teste");
+  test("search should call search on GithubService servise and commit SET_ERRORS mutations on failure", async () => {
+    GithubService.fetchUsers = jest.fn().mockRejectedValueOnce("error");
+
+    jest.spyOn(mutations, "SET_ERRORS");
+
+    let store = new Vuex.Store({
+      state,
+      actions,
+      mutations,
+    });
+
+    try {
+      await store.dispatch("search", "teste");
+    } catch (error) {
+      expect(mutations.SET_ERRORS).toHaveBeenCalledWith(store.state, "error");
+    }
   });
 });
