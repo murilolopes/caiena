@@ -17,12 +17,22 @@ describe("Mutations", () => {
     expect(state.users).toEqual([{ id: 1 }]);
   });
 
-  test("SET_TOTAL_COUT should set state.total_count to payload", () => {
+  test("SET_TOTAL_COUT should decrement state.total_count by state.per_page if them was higher than state.per_page", () => {
     const state = {
+      per_page: 20,
       total_count: 0,
     };
-    mutations.SET_TOTAL_COUT(state, 1);
-    expect(state.total_count).toBe(1);
+    mutations.SET_TOTAL_COUT(state, 1000);
+    expect(state.total_count).toBe(980);
+  });
+
+  test("SET_TOTAL_COUT should set state.total_count without decrement if them was lower or equals than state.per_page", () => {
+    const state = {
+      per_page: 20,
+      total_count: 0,
+    };
+    mutations.SET_TOTAL_COUT(state, 15);
+    expect(state.total_count).toBe(15);
   });
 
   test("SET_ERRORS should set state.errors to payload", () => {

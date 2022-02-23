@@ -6,7 +6,8 @@ export default {
     state.term = payload;
   },
   SET_TOTAL_COUT(state, payload) {
-    state.total_count = payload - state.per_page;
+    if (payload > state.per_page) state.total_count = payload - state.per_page;
+    if (payload <= state.per_page) state.total_count = payload;
   },
   SET_ERRORS(state, payload) {
     state.errors = payload;
