@@ -4,16 +4,19 @@ class Github {
   async fetchUsers({ q, page }) {
     const per_page = 20;
 
-    try {
-      const result = await fetch(
+    return new Promise((resolve, reject) => {
+      fetch(
         `${this.BASE_PATH}/search/users?q=${q}&per_page=${per_page}&page=${page}`
-      );
-
-      const data = await result.json();
-      return data;
-    } catch (e) {
-      return e;
-    }
+      )
+        .then((result) => {
+          result.json().then((response) => {
+            resolve(response);
+          });
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
 }
 
