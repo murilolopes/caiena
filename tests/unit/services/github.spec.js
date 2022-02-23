@@ -16,7 +16,8 @@ describe("Github service", () => {
 
     const q = "mu";
     const page = 1;
-    const result = await GithubService.fetchUsers({ q, page });
+    const per_page = 20;
+    const result = await GithubService.fetchUsers({ q, page, per_page });
 
     expect(global.fetch).toHaveBeenCalledWith(
       `https://api.github.com/search/users?q=${q}&per_page=20&page=${page}`
