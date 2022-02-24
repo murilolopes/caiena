@@ -1,6 +1,7 @@
 <template>
   <div>
     <input type="text" v-model="term" @keyup.enter="search" />
+    <b-button @click="search" :disabled="!term">Search</b-button>
   </div>
 </template>
 
@@ -14,6 +15,8 @@ export default {
   },
   methods: {
     search() {
+      if (!this.term) return;
+
       this.$store.dispatch("search", this.term, { root: true });
     },
   },
