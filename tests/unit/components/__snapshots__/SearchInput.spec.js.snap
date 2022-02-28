@@ -1,9 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchInput renders correctly 1`] = `
+exports[`SearchInput.vue component should be rendered correctly 1`] = `
 <div>
   <input
     type="text"
   />
+   
+  <button
+    class="btn btn-secondary disabled"
+    disabled="disabled"
+    type="button"
+  >
+    Search
+  </button>
 </div>
 `;

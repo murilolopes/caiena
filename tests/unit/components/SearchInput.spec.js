@@ -11,6 +11,11 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("SearchInput.vue", () => {
+  test("component should be rendered correctly", () => {
+    const wrapper = mount(SearchInput, { localVue });
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
   test("search button should be disabled when term is empty", () => {
     const store = new Vuex.Store({});
     const wrapper = mount(SearchInput, { store, localVue });

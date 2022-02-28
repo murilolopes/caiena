@@ -12,6 +12,15 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("UsersTable.vue", () => {
+  test("component should be rendered correctly", () => {
+    const store = new Vuex.Store({
+      state: { users: [{ key: "value" }] },
+    });
+
+    const wrapper = mount(UsersTable, { store, localVue });
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
   test("table and pagination should be visible only when state.users has value", () => {
     const store = new Vuex.Store({
       state: { users: [{ key: "value" }] },

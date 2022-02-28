@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UsersTable.vue component should be rendered correctly 1`] = `
+<div>
+  <table
+    aria-busy="false"
+    aria-colcount="3"
+    class="table b-table"
+    role="table"
+  >
+    <!---->
+    <!---->
+    <thead
+      class=""
+      role="rowgroup"
+    >
+      <!---->
+      <tr
+        class=""
+        role="row"
+      >
+        <th
+          aria-colindex="1"
+          aria-sort="none"
+          class=""
+          role="columnheader"
+          scope="col"
+          tabindex="0"
+        >
+          <div>
+            Avatar Url
+          </div>
+          <span
+            class="sr-only"
+          >
+             (Click to sort Ascending)
+          </span>
+        </th>
+        <th
+          aria-colindex="2"
+          aria-sort="none"
+          class=""
+          role="columnheader"
+          scope="col"
+          tabindex="0"
+        >
+          <div>
+            Login
+          </div>
+          <span
+            class="sr-only"
+          >
+             (Click to sort Ascending)
+          </span>
+        </th>
+        <th
+          aria-colindex="3"
+          aria-sort="none"
+          class=""
+          role="columnheader"
+          scope="col"
+          tabindex="0"
+        >
+          <div>
+            Html Url
+          </div>
+          <span
+            class="sr-only"
+          >
+             (Click to sort Ascending)
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      role="rowgroup"
+    >
+      <!---->
+      <tr
+        class=""
+        role="row"
+      >
+        <td
+          aria-colindex="1"
+          class=""
+          role="cell"
+        >
+          <img
+            height="50"
+            width="50"
+          />
+        </td>
+        <td
+          aria-colindex="2"
+          class=""
+          role="cell"
+        />
+        <td
+          aria-colindex="3"
+          class=""
+          role="cell"
+        >
+          <a
+            target="_blank"
+          >
+            Link
+          </a>
+        </td>
+      </tr>
+      <!---->
+      <!---->
+    </tbody>
+    <!---->
+  </table>
+   
+  <ul
+    aria-disabled="false"
+    aria-label="Pagination"
+    class="pagination b-pagination"
+    role="menubar"
+  >
+    <li
+      aria-hidden="true"
+      class="page-item disabled"
+      role="presentation"
+    >
+      <span
+        aria-disabled="true"
+        aria-label="Go to first page"
+        class="page-link"
+        role="menuitem"
+      >
+        «
+      </span>
+    </li>
+    <li
+      aria-hidden="true"
+      class="page-item disabled"
+      role="presentation"
+    >
+      <span
+        aria-disabled="true"
+        aria-label="Go to previous page"
+        class="page-link"
+        role="menuitem"
+      >
+        ‹
+      </span>
+    </li>
+    <!---->
+    <!---->
+    <li
+      class="page-item"
+      role="presentation"
+    >
+      <button
+        aria-checked="false"
+        aria-label="Go to page 1"
+        aria-posinset="1"
+        aria-setsize="1"
+        class="page-link"
+        role="menuitemradio"
+        tabindex="0"
+        type="button"
+      >
+        1
+      </button>
+    </li>
+    <!---->
+    <!---->
+    <li
+      aria-hidden="true"
+      class="page-item disabled"
+      role="presentation"
+    >
+      <span
+        aria-disabled="true"
+        aria-label="Go to next page"
+        class="page-link"
+        role="menuitem"
+      >
+        ›
+      </span>
+    </li>
+    <li
+      aria-hidden="true"
+      class="page-item disabled"
+      role="presentation"
+    >
+      <span
+        aria-disabled="true"
+        aria-label="Go to last page"
+        class="page-link"
+        role="menuitem"
+      >
+        »
+      </span>
+    </li>
+  </ul>
+</div>
+`;
