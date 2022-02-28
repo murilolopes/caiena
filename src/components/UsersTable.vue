@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-table
+      v-if="$store.state.users"
       show-empty
       :fields="fields"
       :items="$store.state.users"
@@ -21,7 +22,7 @@
       </template>
     </b-table>
     <b-pagination
-      v-if="$store.state.total_count"
+      v-if="$store.state.users"
       v-model="$store.state.selectedPage"
       :total-rows="$store.state.total_count"
       :per-page="$store.state.per_page"
