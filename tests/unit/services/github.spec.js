@@ -1,7 +1,7 @@
 import GithubService from "./../../../src/services/github";
 
 describe("Github service", () => {
-  it("should call github users endpoint and return success", async () => {
+  it("should call github users endpoint and return success with status 200", async () => {
     const response = {
       items: [{ name: "user" }],
       total_count: 1,
@@ -11,6 +11,7 @@ describe("Github service", () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve(response),
+        status: 200,
       })
     );
 
@@ -26,7 +27,25 @@ describe("Github service", () => {
     expect(result).toEqual(response);
   });
 
-  it("should call github users endpoint and return failure", async () => {
+  it("should call github users endpoint and return error with status 422", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve("error"),
+        status: 422,
+      })
+    );
+
+    const q = "mu";
+    const page = 1;
+
+    try {
+      await GithubService.fetchUsers({ q, page });
+    } catch (error) {
+      expect(error).toEqual("error");
+    }
+  });
+
+  it("should call github users endpoint and return error with status 422", async () => {
     global.fetch = jest.fn(() => Promise.reject("error"));
 
     const q = "mu";
